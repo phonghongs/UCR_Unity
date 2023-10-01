@@ -39,17 +39,6 @@ namespace VoidCEEC.UCR.Manager
 			onPlayerControlEvent.EventHandler = OnPlayerControlEvent;
 		}
 
-		int framecount = 0;
-		private void Update()
-		{
-			if (framecount % 30 == 0) {
-				playerData.rawImageRes = GetRawImage();
-				playerData.segmentImageRes = GetSegmentImage();
-				playerData.vehicleStage = OnPlayerState();
-			}
-			framecount ++;
-		}
-
 		private void OnPlayerControlEvent()
 		{
 			if ( onPlayerControlEvent.m_Event is not SoPlayerControlEvent soPlayerControlEvent ) return;

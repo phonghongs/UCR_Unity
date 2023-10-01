@@ -18,61 +18,19 @@ namespace VoidCEEC.UCR.Player
 	    public event RawImage OnRawImage;
 	    public event SegmentImage OnSegmentImage;
 
-	    private static readonly object Gate = new object();
-
-	    public VehicleStage vehicleStage;
-	    public ImageData rawImageRes;
-	    public ImageData segmentImageRes;
-
 	    public VehicleStage GetPlayerState()
 	    {
-		    var result = new VehicleStage();
-
-		    if ( OnPlayerState != null )
-		    {
-			    IAsyncResult ar = OnPlayerState.BeginInvoke( new AsyncCallback( (ar) =>
-			    {
-				    result = OnPlayerState.EndInvoke( ar );
-			    } ), null );
-
-			    ar.AsyncWaitHandle.WaitOne();
-		    }
-
-		    return result;
+		    return OnPlayerState?.Invoke();
 	    }
 
 	    public ImageData GetRawImage()
 	    {
-		    rawImageRes = new ImageData();
-
-		    if ( OnRawImage != null )
-		    {
-			    IAsyncResult ar = OnRawImage.BeginInvoke( new AsyncCallback( (ar) =>
-			    {
-				    rawImageRes = OnRawImage.EndInvoke( ar );
-			    } ), null );
-
-			    ar.AsyncWaitHandle.WaitOne();
-		    }
-
-		    return rawImageRes;
+		    return OnRawImage?.Invoke();
 	    }
 
 	    public ImageData GetSegmentImage()
 	    {
-		    segmentImageRes = new ImageData();
-
-		    if ( OnRawImage != null )
-		    {
-			    IAsyncResult ar = OnRawImage.BeginInvoke( new AsyncCallback( (ar) =>
-			    {
-				    segmentImageRes = OnRawImage.EndInvoke( ar );
-			    } ), null );
-
-			    ar.AsyncWaitHandle.WaitOne();
-		    }
-
-		    return segmentImageRes;
+		    return OnSegmentImage?.Invoke();
 	    }
     }
 }

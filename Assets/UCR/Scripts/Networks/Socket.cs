@@ -3,6 +3,7 @@ using System.Threading;
 using System.Net.Sockets;
 using System.Net;
 using System;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Net.NetworkInformation;
@@ -68,82 +69,87 @@ namespace VoidCEEC.UCR.Networks
 	    private void RestartServer(int serverIndex){
 		    StopListening(serverIndex);
 		    _isRunning[serverIndex] = true;
-		    _threads[serverIndex] = new Thread (() => StartListening(serverIndex));
-		    _threads[serverIndex].Start();
+		    StartCoroutine( StartListening( serverIndex ) );
+		    // _threads[serverIndex] = new Thread (() => StartListening(serverIndex));
+		    // _threads[serverIndex].Start();
 	    }
 
-	    void StartListening(int serverIndex){
-	        try{
-	            _tcpListener[serverIndex] = new TcpListener(IPAddress.Any, remotePort[serverIndex]); //System.Net.IPAddress
-	            _tcpListener[serverIndex].Start();
-	            // Debug.Log("Server Started at host: localhost, port "+remotePort);//
+	    IEnumerator StartListening(int serverIndex)
+	    {
+		    _tcpListener[serverIndex] =
+			    new TcpListener( IPAddress.Any, remotePort[serverIndex] ); //System.Net.IPAddress
+		    _tcpListener[serverIndex].Start();
+		    // Debug.Log("Server Started at host: localhost, port "+remotePort);//
 
-	            // Buffer for reading data
-	            Byte[] bytes = new Byte[256];
-	            String jsonData = null;
+		    // Buffer for reading data
+		    Byte[] bytes = new Byte[256];
+		    String jsonData = null;
 
-	            while (_isRunning[serverIndex]){
-	                // check if new connections are pending, if not, be nice and sleep 100ms
-	                if (!_tcpListener[serverIndex].Pending()){
-	                    Thread.Sleep(100);
-	                }
-	                else{
-	                    TcpClient client = _tcpListener[serverIndex].AcceptTcpClient();
-	                    NetworkStream stream = client.GetStream();
-	                    int i = 0;
-	                    jsonData = null;
-	                    byte[] msg = null;
-	                    // Loop to receive all the data sent by the client.
-	                    while((i = stream.Read(bytes, 0, bytes.Length))!=0){
-	                        jsonData = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-	                        var myDetails = JsonConvert.DeserializeObject < SetController > (jsonData);
-	                        String returnMessage = "";
+		    while ( _isRunning[serverIndex] )
+		    {
+			    // check if new connections are pending, if not, be nice and sleep 100ms
+			    if ( !_tcpListener[serverIndex].Pending() )
+			    {
+				    yield return new WaitForSeconds( 0.1f );
+			    }
+			    else
+			    {
+				    TcpClient client = _tcpListener[serverIndex].AcceptTcpClient();
+				    NetworkStream stream = client.GetStream();
+				    int i = 0;
+				    jsonData = null;
+				    byte[] msg = null;
+				    // Loop to receive all the data sent by the client.
+				    while ( (i = stream.Read( bytes, 0, bytes.Length )) != 0 )
+				    {
+					    jsonData = System.Text.Encoding.ASCII.GetString( bytes, 0, i );
+					    var myDetails = JsonConvert.DeserializeObject<SetController>( jsonData );
+					    String returnMessage = "";
 
-	                        switch (myDetails.Cmd){
-	                            case 185:
-		                            var playerState = playerData[serverIndex].vehicleStage;
-	                                var vehicleStage = new VehicleStage{
-	                                    Cmd = 18520,
-	                                    Speed = playerState.Speed,
-	                                    Angle = playerState.Angle,
-	                                    Heading = playerState.Heading
-	                                };
+					    switch ( myDetails.Cmd )
+					    {
+						    case 185:
+							    var playerState = playerData[serverIndex].GetPlayerState();
+							    var vehicleStage = new VehicleStage
+							    {
+								    Cmd = 18520,
+								    Speed = playerState.Speed,
+								    Angle = playerState.Angle,
+								    Heading = playerState.Heading
+							    };
 
-	                                returnMessage = JsonConvert.SerializeObject(vehicleStage);
-	                                msg = Encoding.UTF8.GetBytes(returnMessage);
-		                            break;
-	                            case 203:
-		                            var rawImage = playerData[serverIndex].rawImageRes;
-	                                msg = rawImage.Image;
-	                                break;
-	                            case 31:
-		                            var segmentImage = playerData[serverIndex].segmentImageRes;
-		                            msg = segmentImage.Image;
-		                            break;
-	                            default:
-	                            break;
-	                        }
+							    returnMessage = JsonConvert.SerializeObject( vehicleStage );
+							    msg = Encoding.UTF8.GetBytes( returnMessage );
+							    break;
+						    case 203:
+							    var rawImage = playerData[serverIndex].GetRawImage();
+							    msg = rawImage.Image;
+							    break;
+						    case 31:
+							    var segmentImage = playerData[serverIndex].GetSegmentImage();
+							    msg = segmentImage.Image;
+							    break;
+						    default:
+							    break;
+					    }
 
-	                        if ( msg == null )
-	                        {
-		                        msg = new[] { (byte) 0 };
-	                        }
+					    if ( msg == null )
+					    {
+						    msg = new[] { (byte)0 };
+					    }
 
-	                        Debug.Log($"{msg.Length}");
-	                        stream.Write(msg, 0, msg.Length);
-	                    }
-	                    client.Close();
-	                    Debug.Log("Client closed" );
-	                }
-	            } // while
-	        }
-	        catch (ThreadAbortException){
-	            // Debug.Log("Error");//
-	        }
-	        finally{
-	            _isRunning[serverIndex] = false;
-	            _tcpListener[serverIndex].Stop();
-	        }
+					    Debug.Log( $"{msg.Length}" );
+					    stream.Write( msg, 0, msg.Length );
+					    yield return new WaitForSeconds( 0.02f );
+				    }
+
+				    client.Close();
+				    Debug.Log( "Client closed" );
+			    }
+		    } // while
+
+		    _isRunning[serverIndex] = false;
+		    _tcpListener[serverIndex].Stop();
 	    }
 
 	    private void StopListening(int serverIndex){
