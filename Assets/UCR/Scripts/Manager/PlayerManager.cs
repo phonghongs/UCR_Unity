@@ -1,4 +1,10 @@
 ﻿using System;
+using Unity.VisualScripting;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine;
 using VoidCEEC.Core;
 using VoidCEEC.Shared;
@@ -20,11 +26,16 @@ namespace VoidCEEC.UCR.Manager
 		[SerializeField] private float speed;
 		[SerializeField] private float steerAngle;
 
+		[SerializeField] private PrometeoCarController prometeoCarController;
+		[SerializeField] private bool isAVControl;
+
 		private void OnEnable()
 		{
 			playerData.OnPlayerState += OnPlayerState;
 			playerData.OnRawImage += GetRawImage;
 			playerData.OnSegmentImage += GetSegmentImage;
+
+			onPlayerControlEvent?.Subscribe();
 		}
 
 		private void OnDisable()
@@ -32,11 +43,16 @@ namespace VoidCEEC.UCR.Manager
 			playerData.OnPlayerState -= OnPlayerState;
 			playerData.OnRawImage -= GetRawImage;
 			playerData.OnSegmentImage -= GetSegmentImage;
+
+			onPlayerControlEvent?.Unsubscribe();
 		}
 
 		private void Start()
 		{
-			onPlayerControlEvent.EventHandler = OnPlayerControlEvent;
+			if ( onPlayerControlEvent != null )
+			{
+				onPlayerControlEvent.EventHandler = OnPlayerControlEvent;
+			}
 		}
 
 		private void OnPlayerControlEvent()
@@ -45,7 +61,7 @@ namespace VoidCEEC.UCR.Manager
 
 			var crSpeed = soPlayerControlEvent.speed;
 			var crSteerAngle = soPlayerControlEvent.steerAngle;
-			Debug.Log($"[OnPlayerControlEvent]: {crSpeed} : {crSteerAngle}");
+			prometeoCarController.SetAVCOntroller(crSpeed, crSteerAngle);
 		}
 
 		private VehicleStage OnPlayerState()
@@ -72,5 +88,47 @@ namespace VoidCEEC.UCR.Manager
 				Image = cameraFusion.GetImage( CameraFusion.CameraType.Segment )
 			};
 		}
+
+		public void UpdateAvControlStatus()
+		{
+			prometeoCarController.isAvController = isAVControl;
+		}
 	}
+
+	#if UNITY_EDITOR
+	[CustomEditor(typeof(PlayerManager))]
+	class PlayerManagerEditor : Editor
+	{
+
+		private SerializedProperty _isAvControlProperty;
+		private PlayerManager _playerManager;
+
+		private void OnEnable()
+		{
+			_isAvControlProperty = serializedObject.FindProperty("isAVControl");
+			_playerManager = (PlayerManager)target;
+		}
+
+		public override void OnInspectorGUI()
+		{
+			DrawPropertiesExcluding(serializedObject,
+				"m_Script",
+				"isAVControl"
+			);
+
+			EditorGUILayout.Space();
+
+			EditorGUI.BeginChangeCheck();
+			{
+				EditorGUILayout.PropertyField( _isAvControlProperty );
+			}
+			if ( EditorGUI.EndChangeCheck() )
+			{
+				serializedObject.ApplyModifiedProperties();
+				_playerManager.UpdateAvControlStatus();
+			}
+
+		}
+	}
+	#endif
 }

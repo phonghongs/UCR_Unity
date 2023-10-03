@@ -23,8 +23,9 @@ namespace VoidCEEC.UCR.Networks
 		[SerializeField] private TMP_Text portShow;
 
 		[SerializeField] private PlayerData[] playerData;
+		[SerializeField] private SoPlayerControlEvent[] onPlayerControlEvent;
 
-	    private bool[] _isRunning;
+		private bool[] _isRunning;
 	    private Thread[] _threads;
 	    private TcpListener[] _tcpListener;
 	    private int activePlayer;
@@ -104,11 +105,15 @@ namespace VoidCEEC.UCR.Networks
 				    {
 					    jsonData = System.Text.Encoding.ASCII.GetString( bytes, 0, i );
 					    var myDetails = JsonConvert.DeserializeObject<SetController>( jsonData );
+
 					    String returnMessage = "";
 
 					    switch ( myDetails.Cmd )
 					    {
 						    case 185:
+							    onPlayerControlEvent[serverIndex].SetController(myDetails.Speed, myDetails.Angle);
+							    onPlayerControlEvent[serverIndex].Raise();
+
 							    var playerState = playerData[serverIndex].GetPlayerState();
 							    var vehicleStage = new VehicleStage
 							    {
@@ -120,6 +125,7 @@ namespace VoidCEEC.UCR.Networks
 
 							    returnMessage = JsonConvert.SerializeObject( vehicleStage );
 							    msg = Encoding.UTF8.GetBytes( returnMessage );
+
 							    break;
 						    case 203:
 							    var rawImage = playerData[serverIndex].GetRawImage();
@@ -138,7 +144,6 @@ namespace VoidCEEC.UCR.Networks
 						    msg = new[] { (byte)0 };
 					    }
 
-					    Debug.Log( $"{msg.Length}" );
 					    stream.Write( msg, 0, msg.Length );
 					    yield return new WaitForSeconds( 0.02f );
 				    }

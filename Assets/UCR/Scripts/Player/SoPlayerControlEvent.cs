@@ -4,6 +4,8 @@ using VoidCEEC.Shared;
 
 namespace VoidCEEC.UCR.Player
 {
+	[CreateAssetMenu(fileName = nameof(SoPlayerControlEvent),
+		menuName = "CEEC/" + nameof(SoPlayerControlEvent))]
 	public class SoPlayerControlEvent : AbstractGameEvent
 	{
 		public float speed;
