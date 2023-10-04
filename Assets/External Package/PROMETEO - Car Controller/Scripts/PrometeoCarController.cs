@@ -155,8 +155,8 @@ public class PrometeoCarController : MonoBehaviour
       public float crSpeed;
       public float crSteering;
       public Vector3 location;
-      public Quaternion rotation;
-      public VehicleStageCl(float speed, float steering, Vector3 location_, Quaternion rotation_) {
+      public Vector3 rotation;
+      public VehicleStageCl(float speed, float steering, Vector3 location_, Vector3 rotation_) {
         crSpeed = speed;
         crSteering = steering;
         location = location_;
@@ -349,7 +349,13 @@ public class PrometeoCarController : MonoBehaviour
 
     public VehicleStageCl GetState()
     {
-      return vhS;
+	    vhS = new VehicleStageCl(
+		    carSpeed,
+		    frontLeftCollider.steerAngle,
+		    gameObject.GetComponent<Transform>().position,
+		    gameObject.GetComponent<Transform>().rotation.eulerAngles
+	    );
+		return vhS;
     }
 
     // This method controls the car sounds. For example, the car engine will sound slow when the car speed is low because the

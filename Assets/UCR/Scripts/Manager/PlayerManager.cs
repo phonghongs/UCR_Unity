@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Unity.VisualScripting;
 
 #if UNITY_EDITOR
@@ -6,6 +7,8 @@ using UnityEditor;
 #endif
 
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 using VoidCEEC.Core;
 using VoidCEEC.Shared;
 using VoidCEEC.UCR.Player;
@@ -13,21 +16,26 @@ using VoidCEEC.UCR.Sensor;
 
 namespace VoidCEEC.UCR.Manager
 {
-	public class PlayerManager : MonoBehaviour
+
+	public class PlayerManager : Core.Singleton<PlayerManager>
 	{
 		[Header("Events")]
 		[SerializeField] private PlayerData playerData;
 		public GenericGameEventListener onPlayerControlEvent;
+		public GenericGameEventListener onTriggerOutLine;
+		public GenericGameEventListener onAvModeEvent;
 
 		[Header("Sensor")]
 		[SerializeField] private CameraFusion cameraFusion;
 
-		[Header("PlayerState")]
+		[Header( "PlayerState" )]
+		[SerializeField] private Transform starTransform;
 		[SerializeField] private float speed;
 		[SerializeField] private float steerAngle;
 
 		[SerializeField] private PrometeoCarController prometeoCarController;
-		[SerializeField] private bool isAVControl;
+
+		public bool IsAvControl { get; private set; }
 
 		private void OnEnable()
 		{
@@ -36,6 +44,8 @@ namespace VoidCEEC.UCR.Manager
 			playerData.OnSegmentImage += GetSegmentImage;
 
 			onPlayerControlEvent?.Subscribe();
+			onAvModeEvent?.Subscribe();
+			onTriggerOutLine?.Subscribe();
 		}
 
 		private void OnDisable()
@@ -45,6 +55,8 @@ namespace VoidCEEC.UCR.Manager
 			playerData.OnSegmentImage -= GetSegmentImage;
 
 			onPlayerControlEvent?.Unsubscribe();
+			onAvModeEvent?.Unsubscribe();
+			onTriggerOutLine?.Unsubscribe();
 		}
 
 		private void Start()
@@ -53,6 +65,21 @@ namespace VoidCEEC.UCR.Manager
 			{
 				onPlayerControlEvent.EventHandler = OnPlayerControlEvent;
 			}
+
+			if (onAvModeEvent != null)
+			{
+				onAvModeEvent.EventHandler = UpdateAvControlStatus;
+			}
+
+			if (onTriggerOutLine != null)
+			{
+				onTriggerOutLine.EventHandler = () =>
+				{
+					OnResetPosition(true);
+				};
+			}
+
+			OnResetPosition(false);
 		}
 
 		private void OnPlayerControlEvent()
@@ -66,10 +93,13 @@ namespace VoidCEEC.UCR.Manager
 
 		private VehicleStage OnPlayerState()
 		{
+			PrometeoCarController.VehicleStageCl bk = prometeoCarController.GetState();
+
 			return new VehicleStage()
 			{
-				Speed = speed,
-				Angle = steerAngle,
+				Speed = bk.crSpeed,
+				Angle = bk.crSteering,
+				Heading = bk.rotation.y
 			};
 		}
 
@@ -89,46 +119,46 @@ namespace VoidCEEC.UCR.Manager
 			};
 		}
 
-		public void UpdateAvControlStatus()
+		private void UpdateAvControlStatus()
 		{
-			prometeoCarController.isAvController = isAVControl;
+			IsAvControl = !IsAvControl;
+			prometeoCarController.isAvController = IsAvControl;
+		}
+
+		private void UpdateAvControlStatus(bool isAvControl)
+		{
+			IsAvControl = isAvControl;
+			prometeoCarController.isAvController = IsAvControl;
+		}
+
+		private void OnResetPosition(bool isOutline)
+		{
+			if ( starTransform != null )
+			{
+				UpdateAvControlStatus(false);
+
+				var transform1 = prometeoCarController.transform;
+				transform1.position = starTransform.position;
+				transform1.rotation = starTransform.rotation;
+
+				if ( isOutline )
+				{
+					StartCoroutine(ResetHelper());
+				}
+			}
+		}
+
+		IEnumerator ResetHelper(){
+			Debug.Log("ResetHelper");
+
+
+			var kinematic = prometeoCarController.GetComponent<Rigidbody>();
+
+			kinematic.isKinematic = true;
+			yield return new WaitForEndOfFrame();
+			kinematic.isKinematic = false;
+			// yield return new WaitForEndOfFrame();
+			// kinematic.isKinematic = true;
 		}
 	}
-
-	#if UNITY_EDITOR
-	[CustomEditor(typeof(PlayerManager))]
-	class PlayerManagerEditor : Editor
-	{
-
-		private SerializedProperty _isAvControlProperty;
-		private PlayerManager _playerManager;
-
-		private void OnEnable()
-		{
-			_isAvControlProperty = serializedObject.FindProperty("isAVControl");
-			_playerManager = (PlayerManager)target;
-		}
-
-		public override void OnInspectorGUI()
-		{
-			DrawPropertiesExcluding(serializedObject,
-				"m_Script",
-				"isAVControl"
-			);
-
-			EditorGUILayout.Space();
-
-			EditorGUI.BeginChangeCheck();
-			{
-				EditorGUILayout.PropertyField( _isAvControlProperty );
-			}
-			if ( EditorGUI.EndChangeCheck() )
-			{
-				serializedObject.ApplyModifiedProperties();
-				_playerManager.UpdateAvControlStatus();
-			}
-
-		}
-	}
-	#endif
 }

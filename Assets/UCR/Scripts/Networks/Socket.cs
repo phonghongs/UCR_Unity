@@ -117,7 +117,7 @@ namespace VoidCEEC.UCR.Networks
 							    var playerState = playerData[serverIndex].GetPlayerState();
 							    var vehicleStage = new VehicleStage
 							    {
-								    Cmd = 18520,
+								    Cmd = 185,
 								    Speed = playerState.Speed,
 								    Angle = playerState.Angle,
 								    Heading = playerState.Heading

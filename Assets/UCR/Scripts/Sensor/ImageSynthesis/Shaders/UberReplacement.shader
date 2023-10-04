@@ -3,7 +3,7 @@
 
 Shader "Hidden/UberReplacement" {
 Properties {
-	_MainTex ("", 2D) = "white" {}
+	_MainTex ("Main Texture", 2D) = "white" {}
 	_Cutoff ("", Float) = 0.5
 	_Color ("", Color) = (1,1,1,1)
 
@@ -14,6 +14,10 @@ Properties {
 SubShader {
 CGINCLUDE
 
+#include <HLSLSupport.cginc>
+#include <UnityShaderVariables.cginc>
+
+#include "Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc"
 fixed4 _ObjectColor;
 fixed4 _CategoryColor;
 int _OutputMode;
@@ -26,9 +30,15 @@ inline float Linear01FromEyeToLinear01FromNear(float depth01)
 	return (depth01 - near/far) * (1 + near/far);
 }
 
-float4 Output(float depth01, float3 normal)
+float4 Output(float depth01, float3 normal, float2 uv)
 {
-	return _CategoryColor;
+    // Calculate noise factor (you can adjust the values for intensity and scale)
+    float noiseIntensity = 0.1; // Adjust this value for intensity
+    float noiseScale = 10.0;    // Adjust this value for scale
+    float4 noise = tex2D(_MainTex, uv);
+
+    // Combine the category color with the noise
+    return _CategoryColor + + noiseIntensity * noise;
 }
 ENDCG
 
@@ -56,7 +66,7 @@ v2f vert( appdata_base v ) {
 	return o;
 }
 fixed4 frag(v2f i) : SV_Target {
-	return Output (i.nz.w, i.nz.xyz);
+	return Output (i.nz.w, i.nz.xyz, float2(0,0));
 }
 ENDCG
 	}
@@ -86,13 +96,13 @@ v2f vert( appdata_base v ) {
 	o.nz.w = COMPUTE_DEPTH_01;
 	return o;
 }
-uniform sampler2D _MainTex;
+
 uniform fixed _Cutoff;
 uniform fixed4 _Color;
 fixed4 frag(v2f i) : SV_Target {
 	fixed4 texcol = tex2D( _MainTex, i.uv );
 	clip( texcol.a*_Color.a - _Cutoff );
-	return Output (i.nz.w, i.nz.xyz);
+	return Output (i.nz.w, i.nz.xyz, i.uv);
 }
 ENDCG
 	}
@@ -126,7 +136,7 @@ v2f vert( appdata_full v ) {
 	return o;
 }
 fixed4 frag( v2f i ) : SV_Target {
-	return Output (i.nz.w, i.nz.xyz);
+	return Output (i.nz.w, i.nz.xyz, i.uv);
 }
 ENDCG
 	}
@@ -159,13 +169,12 @@ v2f vert( appdata_full v ) {
 	o.nz.w = COMPUTE_DEPTH_01;
 	return o;
 }
-uniform sampler2D _MainTex;
 uniform fixed _Cutoff;
 fixed4 frag( v2f i ) : SV_Target {
 	half alpha = tex2D(_MainTex, i.uv).a;
 
 	clip (alpha - _Cutoff);
-	return Output (i.nz.w, i.nz.xyz);
+	return Output (i.nz.w, i.nz.xyz, i.uv);
 }
 ENDCG
 	}
@@ -201,7 +210,7 @@ v2f vert( appdata v ) {
 	return o;
 }
 fixed4 frag(v2f i) : SV_Target {
-	return Output (i.nz.w, i.nz.xyz);
+	return Output (i.nz.w, i.nz.xyz, float2(0,0));
 }
 ENDCG
 	}
@@ -241,13 +250,12 @@ v2f vert( appdata v ) {
 	o.nz.w = COMPUTE_DEPTH_01;
 	return o;
 }
-uniform sampler2D _MainTex;
 uniform fixed _Cutoff;
 fixed4 frag(v2f i) : SV_Target {
 	half alpha = tex2D(_MainTex, i.uv).a;
 
 	clip (alpha - _Cutoff);
-	return Output (i.nz.w, i.nz.xyz);
+	return Output (i.nz.w, i.nz.xyz, i.uv);
 }
 ENDCG
 	}
@@ -283,12 +291,11 @@ v2f vert( appdata v ) {
 	o.nz.w = COMPUTE_DEPTH_01;
 	return o;
 }
-uniform sampler2D _MainTex;
 uniform fixed _Cutoff;
 fixed4 frag(v2f i) : SV_Target {
 	fixed4 texcol = tex2D( _MainTex, i.uv );
 	clip( texcol.a - _Cutoff );
-	return Output (i.nz.w, i.nz.xyz);
+	return Output (i.nz.w, i.nz.xyz, i.uv);
 }
 ENDCG
 	}
@@ -322,11 +329,10 @@ v2f vert (appdata_tree_billboard v) {
 	o.nz.w = COMPUTE_DEPTH_01;
 	return o;
 }
-uniform sampler2D _MainTex;
 fixed4 frag(v2f i) : SV_Target {
 	fixed4 texcol = tex2D( _MainTex, i.uv );
 	clip( texcol.a - 0.001 );
-	return Output (i.nz.w, i.nz.xyz);
+	return Output (i.nz.w, i.nz.xyz, i.uv);
 }
 ENDCG
 	}
@@ -362,13 +368,12 @@ v2f vert (appdata_full v) {
 	o.nz.w = COMPUTE_DEPTH_01;
 	return o;
 }
-uniform sampler2D _MainTex;
 uniform fixed _Cutoff;
 fixed4 frag(v2f i) : SV_Target {
 	fixed4 texcol = tex2D( _MainTex, i.uv );
 	fixed alpha = texcol.a * i.color.a;
 	clip( alpha - _Cutoff );
-	return Output (i.nz.w, i.nz.xyz);
+	return Output (i.nz.w, i.nz.xyz, i.uv);
 }
 ENDCG
 	}
@@ -403,13 +408,12 @@ v2f vert (appdata_full v) {
 	o.nz.w = COMPUTE_DEPTH_01;
 	return o;
 }
-uniform sampler2D _MainTex;
 uniform fixed _Cutoff;
 fixed4 frag(v2f i) : SV_Target {
 	fixed4 texcol = tex2D( _MainTex, i.uv );
 	fixed alpha = texcol.a * i.color.a;
 	clip( alpha - _Cutoff );
-	return Output (i.nz.w, i.nz.xyz);
+	return Output (i.nz.w, i.nz.xyz, i.uv);
 }
 ENDCG
 	}
