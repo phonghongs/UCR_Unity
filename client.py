@@ -7,7 +7,7 @@ import json
 MODE_1 = 185
 MODE_2 = 203
 MODE_3 = 31
-
+MAX_DGRAM = 2**16
 # Create a socket object
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -38,46 +38,40 @@ def AVControl(speed, angle):
     anglecmd = angle
 
 
+def GetData(mode):
+    if mode == MODE_1 or mode == MODE_2 or mode == MODE_3:
+        s.sendall(jsonObject(mode))
+        bs = s.recv(8)
+        length = int.from_bytes(bs, "little")
+
+        data = b''
+        while len(data) < length:
+            to_read = length - len(data)
+            data += s.recv(MAX_DGRAM if to_read > MAX_DGRAM else to_read)
+
+        if (mode == MODE_1):
+            y = json.loads(data)
+            return y
+        elif (mode == MODE_2 or mode == MODE_3):
+            image = cv2.imdecode(
+                np.frombuffer(
+                    data,
+                    np.uint8
+                ), -1
+            )
+            return image
+
+
 if __name__ == "__main__":
     try:
         while True:
-            # CMD 1
-            s.sendall(jsonObject(MODE_1))
-            data = s.recv(255)
-            y = json.loads(data)
-            print(y)
+            state = GetData(MODE_1)
+            raw_image = GetData(MODE_2)
+            segment_image = GetData(MODE_3)
 
-            # CMD 2
-            # s.sendall(jsonObject(MODE_2))
-            # data = s.recv(100000)
-            # try:
-            #     image = cv2.imdecode(
-            #         np.frombuffer(
-            #             data,
-            #             np.uint8
-            #         ), -1
-            #     )
-            #     print(image.shape)
-            #     cv2.imshow("RAW", image)
-            # except Exception as er:
-            #     print(er)
-            #     pass
-
-            # CMD 2
-            s.sendall(jsonObject(MODE_3))
-            data = s.recv(100000)
-            try:
-                image = cv2.imdecode(
-                    np.frombuffer(
-                        data,
-                        np.uint8
-                    ), -1
-                )
-                print(image.shape)
-                cv2.imshow("SEG", image)
-            except Exception as er:
-                print(er)
-                pass
+            print(state)
+            cv2.imshow('raw_image', raw_image)
+            cv2.imshow('segment_image', segment_image)
 
             # maxspeed = 90, max steering angle = 25
             AVControl(speed=-10, angle=-10)

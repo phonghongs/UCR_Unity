@@ -144,6 +144,9 @@ namespace VoidCEEC.UCR.Networks
 						    msg = new[] { (byte)0 };
 					    }
 
+					    int len = msg.Length;
+
+					    stream.Write(BitConverter.GetBytes(len));
 					    stream.Write( msg, 0, msg.Length );
 					    yield return new WaitForSeconds( 0.02f );
 				    }
