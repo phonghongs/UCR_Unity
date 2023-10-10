@@ -42,9 +42,9 @@ def GetData(mode):
     if mode == MODE_1 or mode == MODE_2 or mode == MODE_3:
         s.sendall(jsonObject(mode))
         bs = s.recv(8)
-        length = int.from_bytes(bs, "little")
-
+        length = int.from_bytes(bs, "big")
         data = b''
+
         while len(data) < length:
             to_read = length - len(data)
             data += s.recv(MAX_DGRAM if to_read > MAX_DGRAM else to_read)

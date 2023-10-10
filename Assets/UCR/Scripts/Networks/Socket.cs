@@ -144,11 +144,10 @@ namespace VoidCEEC.UCR.Networks
 						    msg = new[] { (byte)0 };
 					    }
 
-					    int len = msg.Length;
-
-					    stream.Write(BitConverter.GetBytes(len));
+					    stream.Write(IntToByteArray(msg.Length));
+					    yield return new WaitForSeconds( 0.005f );
 					    stream.Write( msg, 0, msg.Length );
-					    yield return new WaitForSeconds( 0.02f );
+					    yield return new WaitForSeconds( 0.015f );
 				    }
 
 				    client.Close();
@@ -159,6 +158,30 @@ namespace VoidCEEC.UCR.Networks
 		    _isRunning[serverIndex] = false;
 		    _tcpListener[serverIndex].Stop();
 	    }
+
+	    public static byte[] IntToByteArray(int number)
+	    {
+		    // Get a byte array of size 4 from the int number
+		    byte[] bytes = BitConverter.GetBytes(number);
+
+		    // Check the endianness of the system
+		    if (BitConverter.IsLittleEndian)
+		    {
+			    // Reverse the byte array if the system is little-endian
+			    Array.Reverse(bytes);
+		    }
+
+		    // Create a new byte array of size 8 and fill it with zeros
+		    byte[] result = new byte[8];
+		    Array.Fill(result, (byte)0);
+
+		    // Copy the original byte array to the new one
+		    Array.Copy(bytes, 0, result, 4, 4);
+
+		    // Return the new byte array
+		    return result;
+	    }
+
 
 	    private void StopListening(int serverIndex){
 	        _isRunning[serverIndex] = false;
