@@ -19,6 +19,9 @@ namespace VoidCEEC
         [SerializeField] private string manualModeText = "Manual Mode";
         [SerializeField] private AbstractGameEvent onAvModeEvent;
 
+		[Header("CheckPoint")]
+		[SerializeField] private TextMeshProUGUI checkPointText;
+
         private void Start()
         {
 	        changeAvMode.onClick.AddListener( () =>
@@ -43,6 +46,11 @@ namespace VoidCEEC
 	        {
 		        changeAvModeText.text = manualModeText;
 	        }
+		}
+
+        public void UpdateCheckPoint(int checkPoint)
+		{
+	        checkPointText.text = $"CheckPoint: {checkPoint}";
 		}
     }
 }
