@@ -74,7 +74,7 @@ if __name__ == "__main__":
             cv2.imshow('segment_image', segment_image)
 
             # maxspeed = 90, max steering angle = 25
-            AVControl(speed=-10, angle=-10)
+            AVControl(speed=10, angle=0)
 
             key = cv2.waitKey(1)
             if key == ord('q'):
