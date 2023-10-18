@@ -113,6 +113,8 @@ namespace VoidCEEC.UCR.Manager
 
 		private ImageData GetSegmentImage()
 		{
+			UIManager.Instance.UpdatePlayerInfo_Segment(true);
+
 			return new ImageData()
 			{
 				Image = cameraFusion.GetImage( CameraFusion.CameraType.Segment )

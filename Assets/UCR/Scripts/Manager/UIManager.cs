@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using DG.Tweening;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
@@ -20,9 +22,19 @@ namespace VoidCEEC
         [SerializeField] private AbstractGameEvent onAvModeEvent;
 
 		[Header("CheckPoint")]
+		[SerializeField] private Slider checkPointSlider;
 		[SerializeField] private TextMeshProUGUI checkPointText;
 
-        private void Start()
+		[Header("TimeLab")]
+		[SerializeField] public TimeLabManager timeLabManager;
+	    [SerializeField] private Button startButton;
+
+	    [Header("Score")]
+	    [SerializeField] private TextMeshProUGUI scoreText;
+	    [SerializeField] private TextMeshProUGUI isUseSegment;
+	    [SerializeField] private TextMeshProUGUI coinEarned;
+
+	    private void Start()
         {
 	        changeAvMode.onClick.AddListener( () =>
 	        {
@@ -33,10 +45,26 @@ namespace VoidCEEC
 		        }
 	        });
 
+	        startButton.onClick.AddListener( () =>
+	        {
+		        startButton.gameObject.SetActive( false );
+		        timeLabManager.Started = true;
+	        });
+
 	        UpdateButton();
+	        UpdatePlayerInfo_Segment( false );
+	        scoreText.text = "";
         }
 
-        private void UpdateButton()
+	    private void Update()
+	    {
+		    if ( timeLabManager.Started )
+		    {
+				scoreText.text = GameManager.Instance.GetTotalScore().ToString( CultureInfo.InvariantCulture );
+		    }
+	    }
+
+	    private void UpdateButton()
 		{
 			if (PlayerManager.Instance.IsAvControl)
 	        {
@@ -49,8 +77,24 @@ namespace VoidCEEC
 		}
 
         public void UpdateCheckPoint(int checkPoint)
+        {
+	        checkPointSlider.DOValue( checkPoint / 10f, 1f ).SetEase( Ease.InOutSine );
+	        checkPointText.text = $"Point: {checkPoint}";
+		}
+
+        public void StopTimeLab()
+        {
+	        timeLabManager.Started = false;
+        }
+
+        public void UpdatePlayerInfo_Coin(int coin)
 		{
-	        checkPointText.text = $"CheckPoint: {checkPoint}";
+	        coinEarned.text = $"Coin: {coin}";
+		}
+
+        public void UpdatePlayerInfo_Segment(bool isSegment)
+		{
+			isUseSegment.text = $"UseSegment: {isSegment}";
 		}
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
+using VoidCEEC.UCR.Manager;
 
 public class CoinsManager : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class CoinsManager : MonoBehaviour
     public GameObject coinObject;
 
     public int[] coinCounting;
-    public float numCoins = 1000;
     public static CoinsManager Instance { get; private set; }
 
     private void Awake()
@@ -30,7 +30,7 @@ public class CoinsManager : MonoBehaviour
     private void Start() {
         coinCounting = new int[] { 0, 0};
 
-        for (float i = 0; i < 1; i += (1/numCoins))
+        for (float i = 0; i < 1; i += (1/GameManager.Instance.numCoins))
         {
             GameObject coinElement = Instantiate(coinObject);
             coinElement.transform.position = pathCreator.path.GetPointAtTime(i);

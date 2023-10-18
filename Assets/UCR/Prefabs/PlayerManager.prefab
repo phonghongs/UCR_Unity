@@ -6301,6 +6301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineEvent: {fileID: 11400000, guid: 95f272434a978494384c9c374bf08bb5, type: 2}
+  coinEvent: {fileID: 11400000, guid: f2482ade261e3a24b8c4ce17c810820f, type: 2}
 --- !u!1 &6720508962714020025
 GameObject:
   m_ObjectHideFlags: 0
@@ -6325,8 +6326,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6720508962714020025}
-  m_LocalRotation: {x: 0.27683532, y: -0, z: -0, w: 0.9609174}
-  m_LocalPosition: {x: 0, y: 4.0099998, z: -5}
+  m_LocalRotation: {x: 0.26976752, y: -0, z: -0, w: 0.9629255}
+  m_LocalPosition: {x: 0, y: 3.7399998, z: -6.6600037}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6579,7 +6580,7 @@ MonoBehaviour:
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
   m_ScreenX: 0.5
-  m_ScreenY: 0.6
+  m_ScreenY: 0.48
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
@@ -6600,10 +6601,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0, y: 0, z: 0}
-  ShoulderOffset: {x: 0, y: 3.61, z: 0}
+  ShoulderOffset: {x: 0, y: 3.34, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
-  CameraDistance: 5
+  CameraDistance: 6.66
   CameraCollisionFilter:
     serializedVersion: 2
     m_Bits: 0
