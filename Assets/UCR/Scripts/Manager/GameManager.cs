@@ -94,8 +94,6 @@ namespace VoidCEEC.UCR.Manager
 
 			float scoreCheckpoints = ((float)CurrentCheckpoint / (float)numCheckPoints) * 60f;
 
-			Debug.Log($"{scoreCheckpoints} | {numCheckPoints} | {CurrentCheckpoint}");
-
 			if ( scoreTimes < 0 )
 				scoreTimes = 0;
 

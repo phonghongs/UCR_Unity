@@ -47,6 +47,7 @@ namespace VoidCEEC
 
 	        startButton.onClick.AddListener( () =>
 	        {
+		        PlayerManager.Instance.IsStartGame = true;
 		        startButton.gameObject.SetActive( false );
 		        timeLabManager.Started = true;
 	        });
@@ -78,7 +79,7 @@ namespace VoidCEEC
 
         public void UpdateCheckPoint(int checkPoint)
         {
-	        checkPointSlider.DOValue( checkPoint / 10f, 1f ).SetEase( Ease.InOutSine );
+	        checkPointSlider.DOValue( (float)checkPoint / 10f, 1f ).SetEase( Ease.InOutSine );
 	        checkPointText.text = $"Point: {checkPoint}";
 		}
 

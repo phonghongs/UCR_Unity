@@ -32,6 +32,7 @@ namespace VoidCEEC.UCR.Manager
 		[SerializeField] private Transform starTransform;
 		[SerializeField] private float speed;
 		[SerializeField] private float steerAngle;
+		public bool IsStartGame { get; set; }
 
 		[SerializeField] private PrometeoCarController prometeoCarController;
 
@@ -79,12 +80,15 @@ namespace VoidCEEC.UCR.Manager
 				};
 			}
 
+			IsStartGame = false;
+
 			OnResetPosition(false);
 		}
 
 		private void OnPlayerControlEvent()
 		{
 			if ( onPlayerControlEvent.m_Event is not SoPlayerControlEvent soPlayerControlEvent ) return;
+			if (!IsStartGame) return;
 
 			var crSpeed = soPlayerControlEvent.speed;
 			var crSteerAngle = soPlayerControlEvent.steerAngle;
