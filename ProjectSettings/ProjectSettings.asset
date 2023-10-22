@@ -738,8 +738,10 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: EASYROADS3D_PRO
-    Standalone: EASYROADS3D_PRO
+    Android: EASYROADS3D_PRO;CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    Standalone: EASYROADS3D_PRO;CROSS_PLATFORM_INPUT;GAIA_2_PRESENT;GAIA_MESH_PRESENT
+    Windows Store Apps: MOBILE_INPUT
+    iPhone: CROSS_PLATFORM_INPUT;MOBILE_INPUT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
