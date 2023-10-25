@@ -10,10 +10,10 @@ TagManager:
   - Coin
   - PW - Prop
   - PW - Building
-  - Synty Tree
+  - PW - Nature
   - Synty Medium Farm
   - Synty Small Farm
-  - PW - Nature
+  - Synty Tree
   layers:
   - Default
   - TransparentFX
@@ -27,12 +27,12 @@ TagManager:
   - PW_Object_Small
   - PW_Object_Medium
   - PW_Object_Large
-  - DI_THANG
-  - TRAI
-  - PHAI
-  - CAM_TRAI
-  - CAM_PHAI
-  - STOP
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
