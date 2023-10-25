@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using VoidCEEC.Core;
 using VoidCEEC.Shared;
 
@@ -98,6 +100,21 @@ namespace VoidCEEC.UCR.Manager
 				scoreTimes = 0;
 
 			return scoreCoins + scoreTimes + scoreCheckpoints;
+		}
+
+		private void Update()
+		{
+			if ( Input.GetKeyDown(KeyCode.Escape) )
+			{
+				OnOutLineEvent();
+				PlayerManager.Instance.OnResetPosition(true);
+			}
+
+			if ( Input.GetKeyDown( KeyCode.R ) )
+			{
+				string currentSceneName = SceneManager.GetActiveScene().name;
+				SceneManager.LoadScene(currentSceneName);
+			}
 		}
 	}
 }

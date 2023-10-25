@@ -137,7 +137,7 @@ namespace VoidCEEC.UCR.Manager
 			prometeoCarController.isAvController = IsAvControl;
 		}
 
-		private void OnResetPosition(bool isOutline)
+		public void OnResetPosition(bool isOutline)
 		{
 			if ( starTransform != null )
 			{
