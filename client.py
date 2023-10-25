@@ -12,7 +12,7 @@ MAX_DGRAM = 2**16
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Define the port on which you want to connect
-PORT = 11000
+PORT = 11001
 # connect to the server on local computer
 s.connect(('127.0.0.1', PORT))
 
