@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Sandbox1 Gaia.unity
+    guid: b92297b853b3ff44481d92220d7e87aa
+  - enabled: 1
     path: Assets/Scenes/Map2(official).unity
     guid: c328c66b42909f14d9f03ac83cf408d2
   - enabled: 0
