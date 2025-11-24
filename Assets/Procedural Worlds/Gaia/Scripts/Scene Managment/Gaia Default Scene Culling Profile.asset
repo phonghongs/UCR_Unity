@@ -54,18 +54,18 @@ MonoBehaviour:
   - 
   - Water
   - UI
-  - 
+  - Road
   - 
   - PW_VFX
   - PW_Object_Small
   - PW_Object_Medium
   - PW_Object_Large
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - DI_THANG
+  - TRAI
+  - PHAI
+  - CAM_TRAI
+  - CAM_PHAI
+  - STOP
   - 
   - 
   - 
