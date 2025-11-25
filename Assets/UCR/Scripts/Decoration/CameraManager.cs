@@ -21,7 +21,7 @@ public class CameraManager : MonoBehaviour
         soloCameras = cameraProfiles
             .Select( cp => cp.camera )
             .ToArray();
-            
+
         ResetSoloCamera();
     }
 
@@ -52,5 +52,10 @@ public class CameraManager : MonoBehaviour
                 virtualCamera.gameObject.SetActive( index == i );
             }
         }
+    }
+
+    public void DisableAllCamera()
+    {
+        EnableSoloCamera( -1 );
     }
 }

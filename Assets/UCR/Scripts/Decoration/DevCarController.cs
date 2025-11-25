@@ -1,6 +1,7 @@
 using UnityEngine;
 using PathCreation;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class DevCarController : MonoBehaviour
 {
@@ -56,12 +57,17 @@ public class DevCarController : MonoBehaviour
 
         if ( wps.Count > 0 )
         {
+            var speedMult = Input.GetKey( KeyCode.LeftShift )
+                ? 1f
+                : flySpeed;
+
             var point = wps[0];
+
             car.transform.LookAt( point );
             car.transform.position = Vector3.MoveTowards(
                 car.transform.position,
                 wps[0],
-                car.maxSpeed * Time.deltaTime * flySpeed
+                car.maxSpeed * Time.deltaTime * speedMult
             );
         }
     }
