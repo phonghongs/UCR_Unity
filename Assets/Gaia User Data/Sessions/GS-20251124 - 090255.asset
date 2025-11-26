@@ -24,7 +24,7 @@ MonoBehaviour:
   m_terrainDepth: 1024
   m_terrainHeight: 1024
   m_seaLevel: 0
-  m_spawnDensity: 1.5
+  m_spawnDensity: 0.8
   m_isLocked: 0
   m_previewImageBytes: 
   m_previewImageWidth: 0
@@ -371,6 +371,28 @@ MonoBehaviour:
     sessionPlaybackState: 1
     m_terrainsFoldedOut: 0
     m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (4)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 090350
+    m_operationDateTime: 11/26/2025 2:01:27 PM
+    scriptableObjectAssetGUID: b73456836ebefdb439e7811eaafd2a8f
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (4)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 090350
+    m_operationDateTime: 11/26/2025 2:02:02 PM
+    scriptableObjectAssetGUID: c9d20fc0b2f282a44a96dad2340a25a0
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
   m_terrainMinMaxCache:
   - guid: 88d2832843419ca4f8a015791269005a
     isWorldmap: 0
@@ -381,7 +403,7 @@ MonoBehaviour:
     isWorldmap: 0
     recalculate: 0
     min: 0
-    max: 0.62500954
+    max: 2.031281
   - guid: Worldmap
     isWorldmap: 1
     recalculate: 0
@@ -394,10 +416,76 @@ MonoBehaviour:
     fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
       - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_64_-10
     texture: {fileID: 0}
-  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_262208_10
+  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_262208_5
     assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
-      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_262208_10
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_262208_5
     fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
-      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_262208_10
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_262208_5
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_64_40
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_64_40
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_64_40
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_3584_12
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_3584_12
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_3584_12
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 090350_LayerTree_3584_0
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerTree_3584_0
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerTree_3584_0
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_262144_10
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_262144_10
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_262144_10
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_64_10
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_64_10
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_64_10
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_3584_5
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_3584_5
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_3584_5
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_262144_5
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_262144_5
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_262144_5
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 090350_RadiusTag_Synty Small Farm_50
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_RadiusTag_Synty Small Farm_50
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_RadiusTag_Synty Small Farm_50
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 090350_RadiusTag_Synty Medium Farm_100
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_RadiusTag_Synty Medium Farm_100
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_RadiusTag_Synty Medium Farm_100
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_64_5
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_64_5
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_64_5
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_3584_0.5
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_3584_0.5
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_3584_0.5
     texture: {fileID: 0}
   m_worldBiomeMaskSettings: {fileID: 0}
