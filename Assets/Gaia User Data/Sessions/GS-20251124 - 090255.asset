@@ -393,6 +393,29 @@ MonoBehaviour:
     sessionPlaybackState: 1
     m_terrainsFoldedOut: 0
     m_serializedExternalAction: 
+  - m_description: Clearing - Trees Details GOs SpawnExt Probes, CurrentTerrainOnly,
+      AnySource
+    m_operationType: 3
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 090350
+    m_operationDateTime: 12/2/2025 9:50:28 AM
+    scriptableObjectAssetGUID: 035c82a28cb59da4f99753421637c555
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (4)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 090350
+    m_operationDateTime: 12/2/2025 10:08:13 AM
+    scriptableObjectAssetGUID: 5904bade62f56bc4ca74467d11ee9c22
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
   m_terrainMinMaxCache:
   - guid: 88d2832843419ca4f8a015791269005a
     isWorldmap: 0
