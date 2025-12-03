@@ -24,7 +24,7 @@ MonoBehaviour:
   m_terrainDepth: 1024
   m_terrainHeight: 1024
   m_seaLevel: 0
-  m_spawnDensity: 1.6
+  m_spawnDensity: 1.2
   m_isLocked: 0
   m_previewImageBytes: 
   m_previewImageWidth: 0
@@ -526,6 +526,72 @@ MonoBehaviour:
     sessionPlaybackState: 1
     m_terrainsFoldedOut: 0
     m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (5)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 091856
+    m_operationDateTime: 12/3/2025 10:38:44 AM
+    scriptableObjectAssetGUID: 46d1d13ee590aaf40835ad26d0299fe3
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (5)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 091856
+    m_operationDateTime: 12/3/2025 10:39:30 AM
+    scriptableObjectAssetGUID: 67d1b66bd4fb0264295df3db934db80f
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (3)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 091856
+    m_operationDateTime: 12/3/2025 10:39:42 AM
+    scriptableObjectAssetGUID: 7f5d953fa5f2f144b815102c1511f87e
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (3)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 091856
+    m_operationDateTime: 12/3/2025 10:40:12 AM
+    scriptableObjectAssetGUID: 4db4f74022bcf0d449aae72ba8f92fc4
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (3)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 091856
+    m_operationDateTime: 12/3/2025 10:40:52 AM
+    scriptableObjectAssetGUID: df6147dc382216343ba7226275a00144
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (3)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 091856
+    m_operationDateTime: 12/3/2025 10:41:04 AM
+    scriptableObjectAssetGUID: 70bc14ec7a493f84ab59701046471232
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
   m_terrainMinMaxCache:
   - guid: 94ec8a87f29a86d41a7ece6dc1cd8ca8
     isWorldmap: 0
@@ -542,5 +608,23 @@ MonoBehaviour:
     recalculate: 0
     min: 0
     max: 0
-  m_bakedMaskCacheEntries: []
+  m_bakedMaskCacheEntries:
+  - fileName: Terrain_0_0-20251124 - 091856_LayerGameObject_64_18
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 091856/Terrain_0_0-20251124 - 091856_LayerGameObject_64_18
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 091856/Terrain_0_0-20251124 - 091856_LayerGameObject_64_18
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 091856_LayerGameObject_3584_5
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 091856/Terrain_0_0-20251124 - 091856_LayerGameObject_3584_5
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 091856/Terrain_0_0-20251124 - 091856_LayerGameObject_3584_5
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20251124 - 091856_LayerGameObject_64_10
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 091856/Terrain_0_0-20251124 - 091856_LayerGameObject_64_10
+    fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
+      - 091856/Terrain_0_0-20251124 - 091856_LayerGameObject_64_10
+    texture: {fileID: 0}
   m_worldBiomeMaskSettings: {fileID: 0}
