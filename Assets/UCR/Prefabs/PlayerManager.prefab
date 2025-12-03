@@ -365,7 +365,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 258112
+    m_Bits: 782400
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 2
@@ -6304,6 +6304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineEvent: {fileID: 11400000, guid: 95f272434a978494384c9c374bf08bb5, type: 2}
   coinEvent: {fileID: 11400000, guid: f2482ade261e3a24b8c4ce17c810820f, type: 2}
+  obstacleEvent: {fileID: 11400000, guid: 644d4e6a1454f3448af47b3e9f01131e, type: 2}
 --- !u!1 &6720508962714020025
 GameObject:
   m_ObjectHideFlags: 0

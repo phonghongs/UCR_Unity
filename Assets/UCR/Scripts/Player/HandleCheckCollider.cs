@@ -8,6 +8,7 @@ namespace VoidCEEC.UCR.Player
     {
         [SerializeField] private AbstractGameEvent outlineEvent;
         [SerializeField] private AbstractGameEvent coinEvent;
+		[SerializeField] private SoObstacle obstacleEvent;
 
         private void OnTriggerEnter(Collider other)
 		{
@@ -22,6 +23,14 @@ namespace VoidCEEC.UCR.Player
 			{
 				if (coinEvent != null)
 					coinEvent.Raise();
+
+				Destroy(other.gameObject);
+			}
+
+			if ( other.CompareTag( "Obstacle" ) )
+			{
+				if (obstacleEvent != null)
+					obstacleEvent.Raise();
 
 				Destroy(other.gameObject);
 			}

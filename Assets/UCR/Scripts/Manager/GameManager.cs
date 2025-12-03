@@ -22,6 +22,8 @@ namespace VoidCEEC.UCR.Manager
 
 		[Header("Player")]
 		[SerializeField] private GenericGameEventListener onTriggerOutLine;
+		[SerializeField] private GenericGameEventListener obstacleEvent;
+		[SerializeField] private int obstacleHitPenalty;
 
 		public int CurrentCheckpoint { get; private set; }
 
@@ -30,6 +32,8 @@ namespace VoidCEEC.UCR.Manager
 			checkPointEvents.Subscribe();
 			coinEvents.Subscribe();
 			onTriggerOutLine.Subscribe();
+			obstacleEvent.Subscribe();
+
 		}
 
 		private void OnDisable()
@@ -37,6 +41,7 @@ namespace VoidCEEC.UCR.Manager
 			checkPointEvents.Unsubscribe();
 			coinEvents.Unsubscribe();
 			onTriggerOutLine.Unsubscribe();
+			obstacleEvent.Unsubscribe();
 		}
 
 		private void Start()
@@ -58,11 +63,21 @@ namespace VoidCEEC.UCR.Manager
 			{
 				onTriggerOutLine.EventHandler = OnOutLineEvent;
 			}
+
+			if ( obstacleEvent != null )
+			{
+				obstacleEvent.EventHandler = OnObstacleEvent;
+			}
 		}
 
 		private void OnOutLineEvent()
 		{
 			UIManager.Instance.StopTimeLab();
+		}
+
+		private void OnObstacleEvent()
+		{
+			obstacleHitPenalty++;
 		}
 
 		private void OnCheckPointEvent()
@@ -88,18 +103,20 @@ namespace VoidCEEC.UCR.Manager
 
 		public float GetTotalScore()
 		{
-			float scoreCoins = (currentCoin / numCoins) * 10;
-			float scoreTimes = ((maxTime - UIManager.Instance.timeLabManager.BestLapTime) / maxTime) * 30;
+			float scoreCoins = (currentCoin / numCoins) * 25;
+			float scoreTimes = ((maxTime - UIManager.Instance.timeLabManager.BestLapTime) / maxTime) * 25;
 
 			if (numCheckPoints == 0)
 				numCheckPoints = 1;
 
-			float scoreCheckpoints = ((float)CurrentCheckpoint / (float)numCheckPoints) * 60f;
+			float scoreCheckpoints = ((float)CurrentCheckpoint / (float)numCheckPoints) * 50f;
 
 			if ( scoreTimes < 0 )
 				scoreTimes = 0;
 
-			return scoreCoins + scoreTimes + scoreCheckpoints;
+			float scoreObstacles = obstacleHitPenalty * -10;
+
+			return scoreCoins + scoreTimes + scoreCheckpoints + scoreObstacles;
 		}
 
 		private void Update()

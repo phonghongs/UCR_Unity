@@ -14,6 +14,7 @@ TagManager:
   - Synty Medium Farm
   - Synty Small Farm
   - PW - Nature
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - CAM_PHAI
   - STOP
   - PW_Avoid
-  - 
+  - Obstacle
   - 
   - 
   - 
