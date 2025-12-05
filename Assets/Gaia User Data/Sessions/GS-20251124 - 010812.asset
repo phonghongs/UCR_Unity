@@ -112,13 +112,13 @@ MonoBehaviour:
     recalculate: 0
     min: 0
     max: 0
-  - guid: Worldmap
-    isWorldmap: 1
+  - guid: 5ab13640fe58b094f8dfc46f8d7713fd
+    isWorldmap: 0
     recalculate: 0
     min: 0
     max: 0
-  - guid: 5ab13640fe58b094f8dfc46f8d7713fd
-    isWorldmap: 0
+  - guid: Worldmap
+    isWorldmap: 1
     recalculate: 0
     min: 0
     max: 0
