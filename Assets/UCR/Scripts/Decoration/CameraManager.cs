@@ -5,36 +5,11 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [Serializable]
-    public class SoloCameraProfile
-    {
-        public KeyCode enableKey;
-        public CinemachineVirtualCamera camera;
-    }
-
-    [SerializeField] SoloCameraProfile[] cameraProfiles;
-
-    CinemachineVirtualCamera[] soloCameras;
+    [SerializeField] CinemachineVirtualCamera[] soloCameras;
 
     void Start()
     {
-        soloCameras = cameraProfiles
-            .Select( cp => cp.camera )
-            .ToArray();
-
         ResetSoloCamera();
-    }
-
-    void Update()
-    {
-        for ( int i = 0; i < cameraProfiles.Length; i++ )
-        {
-            if ( Input.GetKeyUp( cameraProfiles[i].enableKey ) )
-            {
-                EnableSoloCamera( i );
-                break;
-            }
-        }
     }
 
     public void ResetSoloCamera()

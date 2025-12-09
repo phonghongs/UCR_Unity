@@ -427,6 +427,72 @@ MonoBehaviour:
     sessionPlaybackState: 1
     m_terrainsFoldedOut: 0
     m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (4)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 090350
+    m_operationDateTime: 12/9/2025 11:29:08 AM
+    scriptableObjectAssetGUID: 2c0ff2db047a2694cb279ec8c63276ee
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (4)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 090350
+    m_operationDateTime: 12/9/2025 11:29:34 AM
+    scriptableObjectAssetGUID: bca938b84de277545997e2031083edde
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Synty Tree Spawner(Clone)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 090350
+    m_operationDateTime: 12/9/2025 11:30:37 AM
+    scriptableObjectAssetGUID: 60535df0c8cdfd949a1367ff7e1b7cfc
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (4)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 090350
+    m_operationDateTime: 12/9/2025 11:31:20 AM
+    scriptableObjectAssetGUID: 06cfef614298f604eae068a385a6cbc5
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (4)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 090350
+    m_operationDateTime: 12/9/2025 11:32:20 AM
+    scriptableObjectAssetGUID: b3bac055fdf6948418a607b78bee9e0a
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (4)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20251124 - 090350
+    m_operationDateTime: 12/9/2025 11:32:47 AM
+    scriptableObjectAssetGUID: 9a689a7027425124d8b4b2f2273163e2
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
   m_terrainMinMaxCache:
   - guid: 88d2832843419ca4f8a015791269005a
     isWorldmap: 0
@@ -462,17 +528,17 @@ MonoBehaviour:
     fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
       - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_64_40
     texture: {fileID: 0}
-  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_3584_12
+  - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_3584_20
     assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
-      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_3584_12
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_3584_20
     fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
-      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_3584_12
+      - 090350/Terrain_0_0-20251124 - 090350_LayerGameObject_3584_20
     texture: {fileID: 0}
-  - fileName: Terrain_0_0-20251124 - 090350_LayerTree_3584_0
+  - fileName: Terrain_0_0-20251124 - 090350_LayerTree_3584_20
     assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
-      - 090350/Terrain_0_0-20251124 - 090350_LayerTree_3584_0
+      - 090350/Terrain_0_0-20251124 - 090350_LayerTree_3584_20
     fullPath: C:/Users/70022436/Workspace/UCR_Unity/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124
-      - 090350/Terrain_0_0-20251124 - 090350_LayerTree_3584_0
+      - 090350/Terrain_0_0-20251124 - 090350_LayerTree_3584_20
     texture: {fileID: 0}
   - fileName: Terrain_0_0-20251124 - 090350_LayerGameObject_262144_10
     assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20251124

@@ -9,6 +9,8 @@ public class DevCarController : MonoBehaviour
     private PrometeoCarController car;
 
     [SerializeField][Range( 0.1f, 1f )] float flySpeed;
+    [SerializeField] float y;
+    [SerializeField] float lerp;
 
     List<Vector3> wps = new List<Vector3>();
 
@@ -25,11 +27,18 @@ public class DevCarController : MonoBehaviour
         car = FindAnyObjectByType<PrometeoCarController>();
         car.enabled = false;
 
-        var rb = car.GetComponent<Rigidbody>();
-        rb.useGravity = false;
+        foreach ( var rb in GetComponentsInChildren<Rigidbody>() )
+        {
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
 
         path.pathUpdated += () => LoadPathPoints();
         LoadPathPoints();
+
+        var pos = car.transform.position;
+        pos.y = y;
+        car.transform.position = pos;
     }
 
 
@@ -61,14 +70,11 @@ public class DevCarController : MonoBehaviour
                 ? 1f
                 : flySpeed;
 
-            var point = wps[0];
+            var dir = wps[0] - car.transform.position;
+            dir.y = 0;
 
-            car.transform.LookAt( point );
-            car.transform.position = Vector3.MoveTowards(
-                car.transform.position,
-                wps[0],
-                car.maxSpeed * Time.deltaTime * speedMult
-            );
+            car.transform.rotation = Quaternion.Lerp( car.transform.rotation, Quaternion.LookRotation( dir ), lerp );
+            car.transform.Translate( 0f, 0f, car.maxSpeed * Time.deltaTime * speedMult );
         }
     }
 }
