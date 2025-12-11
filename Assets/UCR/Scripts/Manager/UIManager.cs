@@ -31,8 +31,12 @@ namespace VoidCEEC
 
 	    [Header("Score")]
 	    [SerializeField] private TextMeshProUGUI scoreText;
-	    [SerializeField] private TextMeshProUGUI isUseSegment;
 	    [SerializeField] private TextMeshProUGUI coinEarned;
+
+		[Header("Team Info")]
+		[SerializeField] private GameObject teamInfoPanel;
+	    [SerializeField] private TextMeshProUGUI teamInfoText;
+		[SerializeField] private TMP_InputField textMeshProInput;
 
 	    private void Start()
         {
@@ -95,7 +99,13 @@ namespace VoidCEEC
 
         public void UpdatePlayerInfo_Segment(bool isSegment)
 		{
-			isUseSegment.text = $"UseSegment: {isSegment}";
+			// isUseSegment.text = $"UseSegment: {isSegment}";
+		}
+
+		public void OnAcceptInput()
+		{
+			teamInfoText.text = textMeshProInput.text;
+			teamInfoPanel.SetActive( false );
 		}
     }
 }
