@@ -594,6 +594,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7657993404782418080}
     m_Modifications:
+    - target: {fileID: 516572399067971585, guid: e4396b46de89c7348a31a205ca9be7dc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1013107664049146723, guid: e4396b46de89c7348a31a205ca9be7dc, type: 3}
       propertyPath: soloCameras.Array.data[0]
       value: 
@@ -614,6 +618,10 @@ PrefabInstance:
       propertyPath: soloCameras.Array.data[4]
       value: 
       objectReference: {fileID: 9067421662830219367}
+    - target: {fileID: 6849036371839224283, guid: e4396b46de89c7348a31a205ca9be7dc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7391491050993308046, guid: e4396b46de89c7348a31a205ca9be7dc, type: 3}
       propertyPath: m_Name
       value: Camera Manager
