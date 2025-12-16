@@ -36,7 +36,7 @@ namespace VoidCEEC
 		[Header("Team Info")]
 		[SerializeField] private GameObject teamInfoPanel;
 	    [SerializeField] private TextMeshProUGUI teamInfoText;
-		[SerializeField] private TMP_InputField textMeshProInput;
+		[SerializeField] private TMP_Dropdown teamDropdown;
 
 	    private void Start()
         {
@@ -104,7 +104,7 @@ namespace VoidCEEC
 
 		public void OnAcceptInput()
 		{
-			teamInfoText.text = textMeshProInput.text;
+			teamInfoText.text = teamDropdown.options[teamDropdown.value].text;
 			teamInfoPanel.SetActive( false );
 		}
     }

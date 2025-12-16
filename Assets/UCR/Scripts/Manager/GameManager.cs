@@ -101,7 +101,7 @@ namespace VoidCEEC.UCR.Manager
 			UIManager.Instance.UpdatePlayerInfo_Coin(currentCoin);
 		}
 
-		public float GetTotalScore()
+		public int GetTotalScore()
 		{
 			float scoreCoins = (currentCoin / numCoins) * 25;
 			float scoreTimes = ((maxTime - UIManager.Instance.timeLabManager.BestLapTime) / maxTime) * 25;
@@ -116,7 +116,8 @@ namespace VoidCEEC.UCR.Manager
 
 			float scoreObstacles = obstacleHitPenalty * -10;
 
-			return scoreCoins + scoreTimes + scoreCheckpoints + scoreObstacles;
+			float totalScore = scoreCoins + scoreTimes + scoreCheckpoints + scoreObstacles;
+			return (int)(totalScore * 1000);
 		}
 
 		private void Update()
